@@ -1,0 +1,68 @@
+<!-- add-user.component.html -->
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Modify my Profile</h4>
+
+      <form [formGroup]="userForm" (ngSubmit)="saveUser()" class="forms-sample" *ngIf="!submitted" novalidate>
+        <div class="form-group">
+          <label for="exampleInputCin1">CIN</label>
+          <input [(ngModel)]="user.cin" formControlName="cin" type="number" class="form-control" id="exampleInputCin1" placeholder="CIN">
+          <small *ngIf="userForm.get('cin')?.errors?.['required']" class="text-danger">Champ obligatoire.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputNom1">Nom</label>
+          <input [(ngModel)]="user.nom" formControlName="nom" type="text" class="form-control" id="exampleInputNom1" placeholder="Nom">
+          <small *ngIf="userForm.get('nom')?.errors?.['required']" class="text-danger">Champ obligatoire.</small>
+          <small *ngIf="userForm.get('nom')?.errors?.['minlength']" class="text-danger">Minimum 3 caractères requis.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPrenom1">Prénom</label>
+          <input [(ngModel)]="user.prenom" formControlName="prenom" type="text" class="form-control" id="exampleInputPrenom1" placeholder="Prénom">
+          <small *ngIf="userForm.get('prenom')?.errors?.['required']" class="text-danger">Champ obligatoire.</small>
+          <small *ngIf="userForm.get('prenom')?.errors?.['minlength']" class="text-danger">Minimum 3 caractères requis.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputUsername1">Username</label>
+          <input [(ngModel)]="user.username" formControlName="username" type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
+          <small *ngIf="userForm.get('username')?.errors?.['required']" class="text-danger">Champ obligatoire.</small>
+          <small *ngIf="userForm.get('username')?.errors?.['minlength']" class="text-danger">Minimum 4 caractères requis.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputAge1">Age</label>
+          <input [(ngModel)]="user.age" formControlName="age" type="number" class="form-control" id="exampleInputAge1" placeholder="Age">
+          <small *ngIf="userForm.get('age')?.errors?.['required']" class="text-danger">Champ obligatoire.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail3">Adresse email</label>
+          <input [(ngModel)]="user.email" formControlName="email" type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+          <small *ngIf="userForm.get('email')?.errors?.['required']" class="text-danger">Champ obligatoire.</small>
+          <small *ngIf="userForm.get('email')?.errors?.['email']" class="text-danger">Format d'email invalide.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleSelectGender">Sexe</label>
+          <select [(ngModel)]="user.sexe" formControlName="sexe" class="form-select" id="exampleSelectGender">
+            <option value="Homme">Homme</option>
+            <option value="Femme">Femme</option>
+          </select>
+          <small *ngIf="userForm.get('sexe')?.errors?.['required']" class="text-danger">Champ obligatoire.</small>
+        </div>
+       <!-- <div class="form-group">
+          <label for="exampleSelectDepartment">Département</label>
+          <select [(ngModel)]="user.departement.libelle" formControlName="departement" class="form-select" id="exampleSelectDepartment">
+            <option *ngFor="let department of ToShow" [value]="department.id" >{{ department.libelle }}</option>
+          </select>
+          <small *ngIf="userForm.get('departement')?.errors?.['required']" class="text-danger">Champ obligatoire.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleSelectPoste">Poste</label>
+          <select [(ngModel)]="user.poste.libPoste" formControlName="poste" class="form-select" id="exampleSelectPoste">
+            <option *ngFor="let poste of ToShow1" [value]="poste.idPoste" >{{poste.libPoste }}</option>
+          </select>
+          <small *ngIf="userForm.get('poste')?.errors?.['required']" class="text-danger">Champ obligatoire.</small>
+        </div>-->
+        <button type="submit" class="btn btn-primary me-2">Soumettre</button>
+      </form>
+    </div>
+  </div>
+</div>

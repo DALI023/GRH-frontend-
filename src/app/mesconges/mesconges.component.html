@@ -1,0 +1,52 @@
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Liste des Congés</h4>
+      <input
+        class="form-control "
+        type="text"
+        placeholder="search"
+        [(ngModel)]="searchText"
+        (input)="filterConges()"
+      /><br>
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+
+            <th> Status </th>
+            <th> Date Début </th>
+            <th> Date Fin</th>
+            <th> Raison </th>
+            <th> Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let i of filteredConges  | paginate : pagingConfig; let j = index">
+            <tr>
+
+              <td>{{ i.status }}</td>
+              <td>{{ i.dateDebut | date:'MMM d, y ' }}</td>
+              <td>{{ i.dateFin | date:'MMM d, y '}}</td>
+              <td>{{ i.raison }}</td>
+              <td>
+                <button (click)="delete(i.idConge)" class="btn btn-dark btn-rounded btn-icon" style="color: white"> <i class="mdi mdi-trash-can menu-icon"></i></button>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <pagination-controls
+        previousLabel="Précédent"
+        nextLabel="Suivant"
+        (pageChange)="onTableDataChange($event)">
+      </pagination-controls>
+    </div>
+  </div>
+
+</div>

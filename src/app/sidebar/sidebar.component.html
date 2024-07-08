@@ -1,0 +1,93 @@
+<ng-container *ngIf="roleConnected=='ROLE_ADMIN'">
+<div class="container-fluid page-body-wrapper">
+  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item" >
+        <a class="nav-link" routerLink="">
+          <i class="mdi mdi-view-dashboard-outline menu-icon"></i>
+          <span class="menu-title">Tableau de Bord</span>
+        </a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link" routerLink="listEmployee">
+          <i class="mdi mdi-account-multiple-outline menu-icon"></i>
+          <span class="menu-title">Les Employés</span>
+        </a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link" routerLink="conges">
+          <i class="mdi mdi-calendar-multiple-check menu-icon"></i>
+          <span class="menu-title">Congés</span>
+        </a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link" routerLink="annonces">
+          <i class="mdi mdi-bell-outline menu-icon"></i>
+          <span class="menu-title">Les Annonces</span>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="home-tab">
+  <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</ng-container>
+
+
+
+
+<ng-container *ngIf="roleConnected=='ROLE_EMPLOYEE'">
+  <div class="container-fluid page-body-wrapper">
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <!-- Admin Dashboard Links -->
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="">
+            <i class="mdi mdi-view-dashboard-outline menu-icon"></i>
+            <span class="menu-title">Tableau de Bord</span>
+          </a>
+        </li>
+
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="cngess">
+            <i class="mdi mdi-calendar-multiple-check menu-icon"></i>
+            <span class="menu-title">Mes Congés</span>
+          </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="addConge">
+            <i class="mdi mdi-calendar-plus menu-icon"></i>
+            <span class="menu-title">Demander un Congé</span>
+          </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="annonces">
+            <i class="mdi mdi-bell-outline menu-icon"></i>
+            <span class="menu-title">Les Annonces</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="home-tab">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

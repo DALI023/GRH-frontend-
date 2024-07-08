@@ -1,0 +1,46 @@
+<div class="container mt-5">
+
+  <ng-container *ngIf="roleConnected=='ROLE_ADMIN'"><div>
+    <a routerLink="/addAnnonce"><button class="btn btn-primary btn-lg text-white mb-0 me-0" type="button" ><i class="mdi mdi-paperclip-plus"></i>Ajouter une Annonce </button></a>
+  </div></ng-container><br>
+  <input
+    class="form-control "
+    type="text"
+    placeholder="search"
+    [(ngModel)]="searchText"
+    (input)="filterAnnonces()"
+  /><br>
+
+  <div class="row">
+    <div *ngFor="let annonce of filteredAnnonces | paginate : pagingConfig; let j = index" class="col-md-4 mb-4">
+      <div class="card">
+        <img [src]="annonce.image" class="card-img-top" [alt]="annonce.titre">
+
+        <div class="card-body">
+          <h5 class="card-title">{{ annonce.titre }}</h5>
+          <img [src]="annonce.qrCode" [alt]="annonce.qrCode">
+          <p class="card-text">{{ annonce.motif }}</p>
+          <p class="card-text"><small class="text-muted">{{ annonce.dateAnnonce | date:'MMM d, y '}}</small></p>
+          <ng-container *ngIf="annonce.departement?.libelle === 'Societe'; else otherDept">
+            <p class="card-text"><small class="text-muted">Toute la Société</small></p>
+          </ng-container>
+
+          <ng-template #otherDept>
+            <p class="card-text"><small class="text-muted">Departement: {{ annonce.departement?.libelle }}</small></p>
+          </ng-template>
+
+          <ng-container *ngIf="roleConnected=='ROLE_ADMIN'">
+          <button (click)="deleteAnnonce(annonce.idAnnonce)" class="btn btn-danger btn-rounded btn-icon" style="color: white"> <i class="mdi mdi-trash-can-outline menu-icon"></i></button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <pagination-controls
+      previousLabel="Précédent"
+      nextLabel="Suivant"
+      (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+  </div>
+</div>
